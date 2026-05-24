@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Ai Assist | 智能助手</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Poppins', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 高级光晕效果 */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 30%, rgba(120, 80, 200, 0.3), transparent 70%);
+            pointer-events: none;
+        }
+
+        /* 主容器 */
+        .container {
+            text-align: center;
+            z-index: 2;
+            padding: 2rem;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Ai Assist 主标题 */
+        .ai-title {
+            font-size: clamp(2.8rem, 12vw, 5.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, #e0c3ff 50%, #b77eff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 40px rgba(160, 100, 255, 0.4);
+            margin-bottom: 1.5rem;
+            animation: fadeInScale 1s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+            opacity: 0;
+            transform: scale(0.96);
+        }
+
+        /* Hello World 浮动文字 */
+        .hello-world {
+            font-size: clamp(1.2rem, 5vw, 2rem);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: floatUpFade 2.2s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        /* 极简装饰线条 */
+        .line-glow {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(180, 130, 255, 0.8), transparent);
+            margin: 2rem auto 0;
+            opacity: 0.5;
+        }
+
+        /* 入场动画：Ai Assist */
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.92);
+                filter: blur(4px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0);
+            }
+        }
+
+        /* 飘浮淡入动画：Hello World */
+        @keyframes floatUpFade {
+            0% {
+                opacity: 0;
+                transform: translateY(35px);
+                filter: blur(6px);
+            }
+            40% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        /* 极简响应式 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
+            }
+            .hello-world {
+                padding: 0.5rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ai-title">Ai Assist</div>
+        <div class="hello-world">Hello World</div>
+        <div class="line-glow"></div>
+    </div>
+</body>
+</html>
