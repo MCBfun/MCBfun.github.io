@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Ai Assist | 智能助手</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>AI Assist · 智能助手</title>
     <style>
         * {
             margin: 0;
@@ -12,126 +12,298 @@
         }
 
         body {
-            width: 100%;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', 'Poppins', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background-color: #000000;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #ffffff;
             overflow-x: hidden;
-            position: relative;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* 高级光晕效果 */
-        body::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 30%, rgba(120, 80, 200, 0.3), transparent 70%);
-            pointer-events: none;
+        /* 主容器 + 高级入场动画 */
+        .app {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 28px 24px 60px 24px;
+            animation: pageRise 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* 主容器 */
-        .container {
-            text-align: center;
-            z-index: 2;
-            padding: 2rem;
-            backdrop-filter: blur(2px);
-        }
-
-        /* Ai Assist 主标题 */
-        .ai-title {
-            font-size: clamp(2.8rem, 12vw, 5.5rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #ffffff 0%, #e0c3ff 50%, #b77eff 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 40px rgba(160, 100, 255, 0.4);
-            margin-bottom: 1.5rem;
-            animation: fadeInScale 1s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-            opacity: 0;
-            transform: scale(0.96);
-        }
-
-        /* Hello World 浮动文字 */
-        .hello-world {
-            font-size: clamp(1.2rem, 5vw, 2rem);
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.9);
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            border-radius: 60px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            letter-spacing: 1px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: floatUpFade 2.2s ease-out forwards;
-            animation-delay: 0.5s;
-        }
-
-        /* 极简装饰线条 */
-        .line-glow {
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(180, 130, 255, 0.8), transparent);
-            margin: 2rem auto 0;
-            opacity: 0.5;
-        }
-
-        /* 入场动画：Ai Assist */
-        @keyframes fadeInScale {
+        @keyframes pageRise {
             0% {
                 opacity: 0;
-                transform: scale(0.92);
-                filter: blur(4px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-                filter: blur(0);
-            }
-        }
-
-        /* 飘浮淡入动画：Hello World */
-        @keyframes floatUpFade {
-            0% {
-                opacity: 0;
-                transform: translateY(35px);
-                filter: blur(6px);
-            }
-            40% {
-                opacity: 0.6;
+                transform: translateY(24px);
             }
             100% {
                 opacity: 1;
                 transform: translateY(0);
-                filter: blur(0);
             }
         }
 
-        /* 极简响应式 */
-        @media (max-width: 600px) {
-            .container {
-                padding: 1.5rem;
+        /* 顶部标题 + 光效动画 */
+        .title {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(120deg, #FFFFFF 0%, #AAAAAA 80%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+            animation: titleGlow 2.2s infinite alternate ease-in-out;
+        }
+
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 0px rgba(255,255,255,0);
             }
-            .hello-world {
-                padding: 0.5rem 1.2rem;
+            100% {
+                text-shadow: 0 0 8px rgba(255,255,255,0.3);
             }
+        }
+
+        /* 精致分隔条 */
+        .divider {
+            width: 48px;
+            height: 2px;
+            background: #2A2A2A;
+            margin: 16px 0 28px 0;
+            transition: width 0.4s ease;
+        }
+
+        /* 靠左小标题 (灰色·优雅) */
+        .hello {
+            font-size: 28px;
+            font-weight: 500;
+            color: #A1A1A1;
+            letter-spacing: -0.3px;
+            margin-bottom: 12px;
+            animation: fadeSlide 0.9s ease-out;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateX(-12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* 描述文本 (精致) */
+        .desc {
+            color: #7C7C7C;
+            line-height: 1.55;
+            font-size: 16px;
+            margin-bottom: 32px;
+            border-left: 2px solid #2C2C2C;
+            padding-left: 16px;
+            animation: fadeSlide 0.9s ease-out 0.05s both;
+        }
+
+        /* 卡片网格 + 交错动画 */
+        .grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 28px 0 32px 0;
+        }
+
+        .card {
+            background: #0C0C0C;
+            border-radius: 20px;
+            padding: 16px 20px;
+            backdrop-filter: blur(2px);
+            border: 0.5px solid #262626;
+            transition: all 0.25s ease;
+            animation: cardUp 0.55s cubic-bezier(0.23, 1, 0.32, 1) backwards;
+            cursor: pointer;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.02s; }
+        .card:nth-child(2) { animation-delay: 0.08s; }
+        .card:nth-child(3) { animation-delay: 0.14s; }
+        .card:nth-child(4) { animation-delay: 0.20s; }
+        .card:nth-child(5) { animation-delay: 0.26s; }
+        .card:nth-child(6) { animation-delay: 0.32s; }
+        .card:nth-child(7) { animation-delay: 0.38s; }
+        .card:nth-child(8) { animation-delay: 0.44s; }
+
+        @keyframes cardUp {
+            0% {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card:active {
+            background: #1A1A1A;
+            transform: scale(0.98);
+            border-color: #3A3A3A;
+        }
+
+        /* 卡片内部排版 */
+        .card-title {
+            font-size: 19px;
+            font-weight: 590;
+            color: #F5F5F5;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            font-size: 11px;
+            font-weight: 500;
+            background: #1E1E1E;
+            padding: 4px 10px;
+            border-radius: 40px;
+            color: #8E8E8E;
+            letter-spacing: 0.2px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: #6B6B6B;
+            line-height: 1.4;
+        }
+
+        /* 优雅脚注 + 悬浮 */
+        .footer {
+            margin-top: 40px;
+            padding-top: 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #3D3D3D;
+            border-top: 0.5px solid #1F1F1F;
+            animation: fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 轻量微交互 */
+        .glow-pulse {
+            display: inline-block;
+            animation: pulseSoft 2s infinite;
+        }
+
+        @keyframes pulseSoft {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        /* 去掉所有默认焦点样式，保留原生感 */
+        button, div, a {
+            user-select: none;
+        }
+
+        /* 滚动条隐藏但保持功能 */
+        ::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="ai-title">Ai Assist</div>
-        <div class="hello-world">Hello World</div>
-        <div class="line-glow"></div>
+    <div class="app">
+        <!-- 大标题 + 极简光效 -->
+        <div class="title">AI ASSIST</div>
+        <div class="divider"></div>
+
+        <!-- 左对齐 灰色小标题 -->
+        <div class="hello">hello world.</div>
+        <div class="desc">
+            纯粹 · 快捷 · 聚合
+        </div>
+
+        <!-- 八款 AI 卡片 (介绍按照“轻巧、够用、无需承担”风格) -->
+        <div class="grid" id="aiGrid">
+            <div class="card" data-url="https://chat.deepseek.com/">
+                <div class="card-title">DeepSeek <span class="badge">稳定 · 免费</span></div>
+                <div class="card-desc">深度思考，回答细腻，适合日常与专业问题。</div>
+            </div>
+            <div class="card" data-url="https://tongyi.aliyun.com/qwen/">
+                <div class="card-title">通义千问 <span class="badge">轻快中文</span></div>
+                <div class="card-desc">理解中文语境，轻松写文案/总结/翻译。</div>
+            </div>
+            <div class="card" data-url="https://www.doubao.com/chat/">
+                <div class="card-title">豆包 <span class="badge">随性对话</span></div>
+                <div class="card-desc">像朋友一样自然，创意脑洞随时聊。</div>
+            </div>
+            <div class="card" data-url="https://gemini.google.com/">
+                <div class="card-title">Gemini <span class="badge">多模态</span></div>
+                <div class="card-desc">理解图文信息，逻辑清晰，视野开阔。</div>
+            </div>
+            <div class="card" data-url="https://chat.openai.com/">
+                <div class="card-title">ChatGPT <span class="badge">经典强大</span></div>
+                <div class="card-desc">全球顶尖的对话模型，全能解题伙伴。</div>
+            </div>
+            <div class="card" data-url="https://kimi.moonshot.cn/">
+                <div class="card-title">Kimi <span class="badge">超长文本</span></div>
+                <div class="card-desc">一次性处理超长文档，读论文/书籍友好。</div>
+            </div>
+            <div class="card" data-url="https://xinghuo.xfyun.cn/">
+                <div class="card-title">讯飞星火 <span class="badge">中文强项</span></div>
+                <div class="card-desc">语音+文本融合，办公创作效率好帮手。</div>
+            </div>
+            <div class="card" data-url="https://www.perplexity.ai/">
+                <div class="card-title">Perplexity <span class="badge">AI搜索</span></div>
+                <div class="card-desc">实时联网整合答案，像搜索引擎一样直接。</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <span class="glow-pulse">⚡ 内置八款AI网页 · 够用且自由</span><br>
+            无需复杂配置 · 按需切换
+        </div>
     </div>
+
+    <script>
+        // 优雅、原生风格的跳转 (适配网页转应用)
+        (function() {
+            const cards = document.querySelectorAll('.card');
+            
+            function openAI(url) {
+                if (!url) return;
+                // 支持两种跳转：如果存在顶层 Android 接口（FusionApp/WebView 容器）则调用打开外部浏览器或主框架加载
+                try {
+                    if (typeof android !== 'undefined' && android.openUrl) {
+                        android.openUrl(url);
+                    } 
+                    else if (typeof webView !== 'undefined' && webView.loadUrl) {
+                        webView.loadUrl(url);
+                    }
+                    else {
+                        // 普通浏览器环境：新标签打开（避免覆盖当前应用）
+                        window.open(url, '_blank');
+                    }
+                } catch(e) {
+                    // 降级
+                    window.location.href = url;
+                }
+            }
+
+            for (let i = 0; i < cards.length; i++) {
+                const card = cards[i];
+                const aiUrl = card.getAttribute('data-url');
+                if (aiUrl) {
+                    card.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openAI(aiUrl);
+                    });
+                }
+            }
+        })();
+    </script>
 </body>
-  </html>
+</html>
